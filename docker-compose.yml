@@ -4,6 +4,9 @@ services:
         restart: always
         # Server Pro users:
         # image: quay.io/sharelatex/sharelatex-pro
+        build:
+            context: .
+            dockerfile: Dockerfile 
         image: sharelatex/sharelatex
         container_name: sharelatex
         depends_on:
