@@ -6,7 +6,7 @@ services:
         # image: quay.io/sharelatex/sharelatex-pro
         build:
             context: .
-            dockerfile: Dockerfile 
+            dockerfile: Dockerfile
         image: sharelatex/sharelatex
         container_name: sharelatex
         depends_on:
@@ -14,10 +14,9 @@ services:
                 condition: service_healthy
             redis:
                 condition: service_started
-        privileged: true
         ports:
             - 80:80
-            - 465:465 
+            - 465:465
             - 587:587
         links:
             - mongo
@@ -31,7 +30,7 @@ services:
             # - /var/run/docker.sock:/var/run/docker.sock
         environment:
 
-            SHARELATEX_APP_NAME: Our ShareLatex Edition Beta
+            SHARELATEX_APP_NAME: Overleaf Community Edition
 
             SHARELATEX_MONGO_URL: mongodb://mongo/sharelatex
 
@@ -44,9 +43,13 @@ services:
 
             # Enables Thumbnail generation using ImageMagick
             ENABLE_CONVERSIONS: 'true'
-            
+
             # Disables email confirmation requirement
             EMAIL_CONFIRMATION_DISABLED: 'true'
+
+            # temporary fix for LuaLaTex compiles
+            # see https://github.com/overleaf/overleaf/issues/695
+            TEXMFVAR: /var/lib/sharelatex/tmp/texmf-var
 
             ## Set for SSL via nginx-proxy
             #VIRTUAL_HOST: 103.112.212.22
@@ -63,6 +66,7 @@ services:
 
             # SHARELATEX_EMAIL_AWS_SES_ACCESS_KEY_ID:
             # SHARELATEX_EMAIL_AWS_SES_SECRET_KEY:
+
             SHARELATEX_SITE_LANGUAGE: 'cn'
             SHARELATEX_EMAIL_SMTP_HOST: 'smtp.163.com'
             SHARELATEX_EMAIL_SMTP_PORT: '465'
@@ -118,7 +122,7 @@ services:
 
     redis:
         restart: always
-        image: redis
+        image: redis:5
         container_name: redis
         expose:
             - 6379
@@ -131,12 +135,12 @@ services:
     #    container_name: ldap
     #    expose:
     #        - 389
-    
+
     # See https://github.com/jwilder/nginx-proxy for documentation on how to configure the nginx-proxy container,
     # and https://github.com/overleaf/overleaf/wiki/HTTPS-reverse-proxy-using-Nginx for an example of some recommended
     # settings. We recommend using a properly managed nginx instance outside of the Overleaf Server Pro setup,
     # but the example here can be used if you'd prefer to run everything with docker-compose
-    
+
     # nginx-proxy:
     #     image: jwilder/nginx-proxy
     #     container_name: nginx-proxy

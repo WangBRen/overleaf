@@ -2,7 +2,8 @@
 # Overleaf Community Edition (overleaf/overleaf)
 # ---------------------------------------------
 
-FROM sharelatex/sharelatex-base:latest
+ARG SHARELATEX_BASE_TAG=sharelatex/sharelatex-base:latest
+FROM $SHARELATEX_BASE_TAG
 
 ENV SHARELATEX_CONFIG /etc/sharelatex/settings.coffee
 
@@ -91,6 +92,8 @@ COPY ${baseDir}/settings.coffee /etc/sharelatex/settings.coffee
 ENV WEB_API_USER "sharelatex"
 
 ENV SHARELATEX_APP_NAME "Overleaf Community Edition"
+
+ENV OPTIMISE_PDF "true"
 
 
 EXPOSE 80
