@@ -30,7 +30,7 @@ services:
             # - /var/run/docker.sock:/var/run/docker.sock
         environment:
 
-            SHARELATEX_APP_NAME: Overleaf Community Edition
+            SHARELATEX_APP_NAME: Sustech ShareLaTeX
 
             SHARELATEX_MONGO_URL: mongodb://mongo/sharelatex
 
@@ -55,8 +55,8 @@ services:
             #VIRTUAL_HOST: 103.112.212.22
 
             SHARELATEX_SITE_URL: http://139.159.177.11
-            # SHARELATEX_NAV_TITLE: Our ShareLaTeX Instance
-            # SHARELATEX_HEADER_IMAGE_URL: http://somewhere.com/mylogo.png
+            SHARELATEX_NAV_TITLE: Sustech ShareLaTeX
+            SHARELATEX_HEADER_IMAGE_URL: https://www.sustech.edu.cn/wp-content/themes/twentyseventeen/images/sustech-logo-cn.png
             SHARELATEX_ADMIN_EMAIL: wangbr@mail.sustc.edu.cn
 
             # SHARELATEX_LEFT_FOOTER: '[{"text": "Powered by <a href=\"https://www.sharelatex.com\">ShareLaTeX</a> 2016"},{"text": "Another page I want to link to can be found <a href=\"here\">here</a>"} ]'
